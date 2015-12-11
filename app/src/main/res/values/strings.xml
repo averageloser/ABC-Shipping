@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ABC Shipping Co.</string>
+    <string name="show_name">Show name</string>
+    <string name="name_text_view_hint">Name will display here...</string>
+    <string name="load_people">Load People list</string>
+
+    <string-array name="name_sort_array">
+        <item>First name first</item>
+        <item>Last name first</item>
+    </string-array>
+</resources>
