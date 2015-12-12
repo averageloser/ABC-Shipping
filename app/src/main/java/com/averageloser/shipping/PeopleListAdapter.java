@@ -52,7 +52,7 @@ public class PeopleListAdapter extends ArrayAdapter<Person> {
 
         //Now bind the data to the views.
 
-        holder.nameTextView.setText(getItem(position).getFirstName());
+        holder.nameTextView.setText(getItem(position).toString());
 
         return convertView;
     }
