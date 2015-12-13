@@ -15,10 +15,10 @@ import android.widget.TextView;
 
 /**
  * Created by tom on 12/11/2015.
- *
+ * <p/>
  * Represents the UI for the input form.
  */
-public class MainFragment extends android.support.v4.app.Fragment  {
+public class MainFragment extends android.support.v4.app.Fragment {
     private EditText firstNameEditText;
     private EditText lastNameEditText;
     private TextView fullNameTextView;
@@ -88,13 +88,27 @@ public class MainFragment extends android.support.v4.app.Fragment  {
                 lastNameEditText.setError("You need to enter a last name!");
             }
 
-            if (!firstName.isEmpty() && !lastName.isEmpty()){
+            if (!firstName.isEmpty() && !lastName.isEmpty()) {
         /*It's easy just to copy the contents of the edit text fields to the text field, but I
           assume that the point of the exercise it to demonstrate object creation. */
                 Person person = new Person(firstName,
                         lastName);
 
-                fullNameTextView.setText(getOrderedName(person));
+                int position = nameSortSpinner.getSelectedItemPosition();
+
+                String order = null;
+
+                switch (position) {
+                    case 0:
+                        order = "first";
+                        break;
+                    case 1:
+                        order = "last";
+                        break;
+                    default:  //Unlikely to be needed, but just a little protection in case position is unknown.
+                        order = "first";
+                }
+                fullNameTextView.setText(getOrderedName(person, order));
             }
         }
     };
@@ -108,22 +122,24 @@ public class MainFragment extends android.support.v4.app.Fragment  {
         }
     };
 
-    /*Sets the order in which the person's name is displayed e.g. first name first or last name first,
-    then returns it. */
-    private String getOrderedName(Person person) {
-        String fullName = "";
+    /* Sets the order in which the person's name is displayed e.g. first name first or last name first,
+    then returns it. This version of the method is not dependent on any ui element, and this is a better version than below. */
+    private String getOrderedName(Person person, String order) {
+        String fullName = null;
 
-        //Get which option to which the name spinner is set for ordering.
-        int selectedPosition = nameSortSpinner.getSelectedItemPosition();
-
-        switch (selectedPosition) {
-            case 0:
+        switch (order.toLowerCase()) {
+            case "first":
                 fullName = person.toString();
                 break;
-            case 1:
+            case "last":
                 fullName = person.toStringLast();
+                break;
+            default:
+                fullName = person.toString();
         }
 
         return fullName;
     }
+
+
 }
