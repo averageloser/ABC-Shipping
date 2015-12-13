@@ -123,7 +123,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
     };
 
     /* Sets the order in which the person's name is displayed e.g. first name first or last name first,
-    then returns it. This version of the method is not dependent on any ui element, and this is a better version than below. */
+    then returns it. */
     private String getOrderedName(Person person, String order) {
         String fullName = null;
 
